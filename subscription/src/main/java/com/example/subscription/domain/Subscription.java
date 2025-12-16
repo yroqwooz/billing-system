@@ -14,4 +14,21 @@ public class Subscription {
         this.period = period;
         this.status = status;
     }
+
+    public UserId getUserId() {
+        return userId;
+    }
+
+    public PlanId getPlanId() {
+        return planId;
+    }
+
+    public SubscriptionPeriod getPeriod() {
+        return period;
+    }
+
+    public SubscriptionStatus getStatus() {
+        return status;
+    }
+
 }
