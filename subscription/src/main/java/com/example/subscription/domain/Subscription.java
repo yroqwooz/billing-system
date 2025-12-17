@@ -12,6 +12,7 @@ public class Subscription {
     public Subscription(UserId userId, SubscriptionPeriod period, PlanId planId, SubscriptionStatus status) {
         this.userId = userId;
         this.planId = planId;
+        this.subscriptionId = subscriptionId;
         this.period = period;
         this.status = status;
     }
