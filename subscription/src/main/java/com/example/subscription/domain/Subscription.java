@@ -17,7 +17,43 @@ public final class Subscription {
         this.planId = Objects.requireNonNull(planId, "planId must not be null");
         this.period = Objects.requireNonNull(period, "period must be not null");
         this.status = SubscriptionStatus.NEW;
-        subscriptionId = new SubscriptionId(UUID.randomUUID());
+        this.subscriptionId = new SubscriptionId(UUID.randomUUID());
+    }
+
+    public void activate() {
+        if (this.status == SubscriptionStatus.NEW) {
+            this.status = SubscriptionStatus.ACTIVE;
+        } else {
+            throw new IllegalStateException("Subscription must be NEW to be activated");
+        }
+    }
+
+    public void expire() {
+        if (this.status == SubscriptionStatus.ACTIVE) {
+            this.status = SubscriptionStatus.EXPIRED;
+        } else {
+            throw new IllegalStateException("Subscription must be ACTIVE to be expired");
+        }
+    }
+
+    public void cancel() {
+        if (this.status == SubscriptionStatus.ACTIVE) {
+            this.status = SubscriptionStatus.CANCELLED;
+        } else {
+            throw new IllegalStateException("Subscription must be ACTIVE to be cancelled");
+        }
+    }
+
+    public boolean isActive() {
+        return this.status == SubscriptionStatus.ACTIVE;
+    }
+
+    public boolean isCancelled() {
+        return this.status == SubscriptionStatus.CANCELLED;
+    }
+
+    public boolean isExpired() {
+        return this.status == SubscriptionStatus.EXPIRED;
     }
 
     public UserId getUserId() {
