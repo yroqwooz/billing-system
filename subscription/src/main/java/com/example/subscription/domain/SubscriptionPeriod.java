@@ -27,4 +27,13 @@ public final class SubscriptionPeriod {
     public LocalDate getEndDate() {
         return endDate;
     }
+
+    public boolean contains(LocalDate date) {
+        return !date.isBefore(this.startDate) && !date.isBefore(this.endDate);
+    }
+
+    public boolean overlapsWith(SubscriptionPeriod other) {
+        return startDate.isBefore(other.endDate) && endDate.isAfter(other.startDate);
+    }
+
 }
