@@ -1,20 +1,23 @@
 package com.example.subscription.domain;
 
 
-public class Subscription {
+import java.util.Objects;
+import java.util.UUID;
+
+public final class Subscription {
     private final UserId userId;
     private final PlanId planId;
     private final SubscriptionId subscriptionId;
     private final SubscriptionPeriod period;
-    private final SubscriptionStatus status;
+    private SubscriptionStatus status;
 
 
-    public Subscription(UserId userId, PlanId planId, SubscriptionId subscriptionId, SubscriptionPeriod period, SubscriptionStatus status) {
-        this.userId = userId;
-        this.planId = planId;
-        this.subscriptionId = subscriptionId;
-        this.period = period;
-        this.status = status;
+    public Subscription(UserId userId, PlanId planId, SubscriptionPeriod period) {
+        this.userId = Objects.requireNonNull(userId, "userId must not be null");
+        this.planId = Objects.requireNonNull(planId, "planId must not be null");
+        this.period = Objects.requireNonNull(period, "period must be not null");
+        this.status = SubscriptionStatus.NEW;
+        subscriptionId = new SubscriptionId(UUID.randomUUID());
     }
 
     public UserId getUserId() {
