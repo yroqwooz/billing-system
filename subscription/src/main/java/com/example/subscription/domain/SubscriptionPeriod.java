@@ -8,6 +8,9 @@ public final class SubscriptionPeriod {
 
 
     public SubscriptionPeriod(LocalDate startDate, LocalDate endDate) {
+        this.startDate = Objects.requireNonNull(startDate, "startDate must not be null");
+        this.endDate = Objects.requireNonNull(endDate, "endDate must not be null");
+
         if (startDate.isAfter(endDate)) {
             throw new IllegalArgumentException(
                     "The start date of the subscription cannot be later than its end date"
