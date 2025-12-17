@@ -4,6 +4,7 @@ package com.example.subscription.domain;
 public class Subscription {
     private final UserId userId;
     private final PlanId planId;
+    private final SubscriptionId subscriptionId;
     private final SubscriptionPeriod period;
     private final SubscriptionStatus status;
 
