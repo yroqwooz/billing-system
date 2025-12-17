@@ -9,7 +9,7 @@ public class Subscription {
     private final SubscriptionStatus status;
 
 
-    public Subscription(UserId userId, SubscriptionPeriod period, PlanId planId, SubscriptionStatus status) {
+    public Subscription(UserId userId, PlanId planId, SubscriptionId subscriptionId, SubscriptionPeriod period, SubscriptionStatus status) {
         this.userId = userId;
         this.planId = planId;
         this.subscriptionId = subscriptionId;
