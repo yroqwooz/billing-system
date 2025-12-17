@@ -24,6 +24,10 @@ public class Subscription {
         return planId;
     }
 
+    public SubscriptionId getSubscriptionId() {
+        return subscriptionId;
+    }
+
     public SubscriptionPeriod getPeriod() {
         return period;
     }
