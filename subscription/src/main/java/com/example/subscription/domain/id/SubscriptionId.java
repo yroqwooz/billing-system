@@ -1,4 +1,4 @@
-package com.example.subscription.domain;
+package com.example.subscription.domain.id;
 
 import java.util.UUID;
 
