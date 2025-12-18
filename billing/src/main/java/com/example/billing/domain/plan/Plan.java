@@ -17,28 +17,57 @@ public class Plan {
         this.status = PlanStatus.INACTIVE;
     }
 
-    public void setActive() {
-        switch (this.status) {
-            case INACTIVE -> this.status = PlanStatus.ACTIVE;
-            case OBSOLETE -> throw new IllegalStateException("Plan cannot be activated from obsolete state");
-            case ACTIVE -> throw new IllegalStateException("Plan already active");
+    public PlanId getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public PlanDuration getDuration() {
+        return duration;
+    }
+
+    public Money getPrice() {
+        return price;
+    }
+
+    public PlanStatus getStatus() {
+        return status;
+    }
+
+    public boolean isActive() {
+        return this.status == PlanStatus.ACTIVE;
+    }
+
+    public boolean isObsolete() {
+        return this.status == PlanStatus.OBSOLETE;
+    }
+
+    private void changeStatus(PlanStatus newStatus) {
+        if (status == newStatus) {
+            throw new IllegalStateException("Plan already " + newStatus);
         }
+
+        switch (status) {
+            case OBSOLETE -> throw new IllegalStateException(
+                    "Cannot change status from OBSOLETE to " + newStatus
+            );
+            case ACTIVE, INACTIVE -> status = newStatus;
+        }
+    }
+
+    public void setActive() {
+        changeStatus(PlanStatus.ACTIVE);
     }
 
     public void setInactive() {
-        switch (this.status) {
-            case ACTIVE -> this.status = PlanStatus.INACTIVE;
-            case OBSOLETE -> throw new IllegalStateException("Plan cannot become inactive from obsolete state");
-            case INACTIVE -> throw new IllegalStateException("Plan already inactive");
-        }
+        changeStatus(PlanStatus.INACTIVE);
     }
 
     public void setObsolete() {
-        switch (this.status) {
-            case INACTIVE -> this.status = PlanStatus.OBSOLETE;
-            case ACTIVE -> throw new IllegalStateException("Plan cannot become inactive from obsolete state");
-            case OBSOLETE -> throw new IllegalStateException("Plan already obsolete");
-        }
+        changeStatus(PlanStatus.OBSOLETE);
     }
 
 }
