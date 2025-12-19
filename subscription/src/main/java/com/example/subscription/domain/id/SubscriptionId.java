@@ -2,14 +2,10 @@ package com.example.subscription.domain.id;
 
 import java.util.UUID;
 
-public class SubscriptionId {
-    public UUID getValue() {
-        return value;
-    }
+public record SubscriptionId(UUID value) {
 
-    private final UUID value;
-
-    public SubscriptionId(UUID value) {
-        this.value = value;
+    public static SubscriptionId newId() {
+        return new SubscriptionId(UUID.randomUUID());
     }
 }
+
