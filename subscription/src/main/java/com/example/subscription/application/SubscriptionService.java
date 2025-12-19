@@ -1,38 +1,62 @@
 package com.example.subscription.application;
 
-import com.example.common.PlanSnapshot;
+import com.example.subscription.application.exceptions.PlanNotFoundException;
+import com.example.subscription.application.exceptions.SubscriptionNotFoundException;
+import com.example.subscription.application.port.PlanQuery;
+import com.example.subscription.application.port.PlanSnapshot;
 import com.example.subscription.domain.id.PlanId;
-import com.example.subscription.domain.Subscription;
+import com.example.subscription.domain.id.SubscriptionId;
+import com.example.subscription.domain.model.Subscription;
 import com.example.subscription.domain.id.UserId;
+import com.example.subscription.domain.model.SubscriptionPeriod;
+
 import com.example.subscription.infrastructure.SubscriptionRepository;
 
-public class SubscriptionService {
-    private final SubscriptionRepository subscriptionRepository;
-    private final PlanQuery planQuery; // <- интерфейс из common
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-    public SubscriptionService(SubscriptionRepository sRepo, PlanQuery planQuery) {
-        this.subscriptionRepository = sRepo;
+import java.time.LocalDate;
+
+@Service
+@Transactional
+public class SubscriptionService {
+
+    private final SubscriptionRepository repository;
+    private final PlanQuery planQuery;
+
+    public SubscriptionService(
+            SubscriptionRepository repository,
+            PlanQuery planQuery
+    ) {
+        this.repository = repository;
         this.planQuery = planQuery;
     }
 
-    public Subscription createSubscription(UserId userId, PlanId planId) {
+    public SubscriptionId createSubscription(UserId userId, PlanId planId) {
+        PlanSnapshot plan = planQuery.getPlan(planId)
+                .orElseThrow(PlanNotFoundException::new);
 
-        PlanSnapshot plan = planQuery.findById(planId);
-
-        if (plan.status() != ACTIVE) {
-            throw new IllegalStateException("Plan is not active");
-        }
+        LocalDate start = LocalDate.now();
+        LocalDate end = start.plusDays(plan.durationDays());
 
         Subscription subscription = Subscription.create(
+                SubscriptionId.newId(),
                 userId,
-                plan.id(),
-                SubscriptionPeriod.from(plan.duration())
+                planId,
+                SubscriptionPeriod.of(start, end)
         );
 
         subscription.activate();
+        repository.save(subscription);
 
-        subscriptionRepository.save(subscription);
+        return subscription.getId();
+    }
 
-        return subscription;
+    public void cancelSubscription(SubscriptionId id) {
+        Subscription subscription = repository.findById(id)
+                .orElseThrow(SubscriptionNotFoundException::new);
+
+        subscription.cancel();
+        repository.save(subscription);
     }
 }
