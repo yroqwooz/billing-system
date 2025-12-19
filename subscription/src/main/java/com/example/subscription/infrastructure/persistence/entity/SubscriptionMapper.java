@@ -17,8 +17,8 @@ public final class SubscriptionMapper {
         e.setUserId(subscription.getUserId().value());
         e.setPlanId(subscription.getPlanId().value());
         e.setStatus(subscription.getStatus().name());
-        e.setStartDate(subscription.getPeriod().start());
-        e.setEndDate(subscription.getPeriod().end());
+        e.setStartDate(subscription.getPeriod().startDate());
+        e.setEndDate(subscription.getPeriod().endDate());
         return e;
     }
 
