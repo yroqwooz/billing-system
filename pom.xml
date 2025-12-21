@@ -24,11 +24,6 @@
 	<developers>
 		<developer/>
 	</developers>
-    <modules>
-        <module>billing</module>
-        <module>subscription</module>
-        <module>common</module>
-    </modules>
 
     <scm>
 		<connection/>
@@ -73,8 +68,10 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>runtime</scope>
+            <scope>test</scope>
         </dependency>
+
+
     </dependencies>
 
 	<build>

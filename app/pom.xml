@@ -21,40 +21,6 @@
 
     <dependencies>
 
-        <!-- Spring Boot -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- Domain modules -->
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>billing</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>subscription</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>common</artifactId>
-        </dependency>
-
-        <!-- Optional: validation -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
-
-        <!-- Optional: testing -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
 
     </dependencies>
 
