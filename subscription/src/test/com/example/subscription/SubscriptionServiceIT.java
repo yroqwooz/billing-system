@@ -1,4 +1,4 @@
-package com.example.subscription.application;
+package com.example.subscription;
 
 import com.example.common.PlanId;
 import com.example.common.UserId;

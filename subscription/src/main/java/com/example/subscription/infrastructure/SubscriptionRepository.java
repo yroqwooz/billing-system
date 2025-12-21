@@ -2,7 +2,7 @@ package com.example.subscription.infrastructure;
 
 import com.example.subscription.domain.model.Subscription;
 import com.example.subscription.domain.id.SubscriptionId;
-import com.example.subscription.domain.id.UserId;
+import com.example.common.UserId;
 
 import java.util.Optional;
 

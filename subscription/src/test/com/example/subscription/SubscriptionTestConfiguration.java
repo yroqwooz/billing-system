@@ -1,4 +1,4 @@
-package com.example.subscription.application;
+package com.example.subscription;
 
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
