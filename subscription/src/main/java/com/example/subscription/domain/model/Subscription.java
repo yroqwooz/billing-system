@@ -1,9 +1,9 @@
 package com.example.subscription.domain.model;
 
 import com.example.subscription.domain.exceptions.IllegalSubscriptionStateTransition;
-import com.example.subscription.domain.id.PlanId;
+import com.example.common.PlanId;
+import com.example.common.UserId;
 import com.example.subscription.domain.id.SubscriptionId;
-import com.example.subscription.domain.id.UserId;
 
 import java.time.LocalDate;
 

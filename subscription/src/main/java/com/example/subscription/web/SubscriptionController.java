@@ -1,14 +1,14 @@
 package com.example.subscription.web;
 
 import com.example.subscription.application.SubscriptionService;
-import com.example.subscription.domain.id.PlanId;
+import com.example.common.UserId;
+import com.example.common.PlanId;
 import com.example.subscription.domain.id.SubscriptionId;
-import com.example.subscription.domain.id.UserId;
 import com.example.subscription.web.dto.CreateSubscriptionRequest;
 import com.example.subscription.web.dto.CreateSubscriptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
+import jakarta.validation.Valid;
 import java.util.UUID;
 
 @RestController

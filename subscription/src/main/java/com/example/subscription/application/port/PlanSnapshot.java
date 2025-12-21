@@ -1,7 +1,7 @@
 package com.example.subscription.application.port;
 
 
-import com.example.subscription.domain.id.PlanId;
+import com.example.common.PlanId;
 
 public record PlanSnapshot(
         PlanId id,

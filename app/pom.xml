@@ -7,7 +7,6 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Parent: root aggregator -->
     <parent>
         <groupId>com.example</groupId>
         <artifactId>billing-system</artifactId>
@@ -20,19 +19,34 @@
     <name>billing-system-app</name>
 
     <dependencies>
-
-
+        <!-- Internal modules -->
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>subscription</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>billing</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>false</skip>
+                    <mainClass>com.example.app.BillingSystemApplication</mainClass>
+                </configuration>
             </plugin>
-
         </plugins>
     </build>
-
 </project>
