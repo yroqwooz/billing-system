@@ -1,7 +1,7 @@
 
 package com.example.subscription.web.dto;
 
-import org.jetbrains.annotations.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.util.UUID;
 
 public record CreateSubscriptionRequest(
