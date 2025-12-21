@@ -4,7 +4,6 @@ import com.example.subscription.application.exceptions.PlanNotFoundException;
 import com.example.subscription.application.exceptions.SubscriptionNotFoundException;
 import com.example.subscription.application.port.PlanQuery;
 import com.example.subscription.application.port.PlanSnapshot;
-import com.example.subscription.application.port.StubPlanQuery;
 import com.example.subscription.domain.id.PlanId;
 import com.example.subscription.domain.id.SubscriptionId;
 import com.example.subscription.domain.model.Subscription;

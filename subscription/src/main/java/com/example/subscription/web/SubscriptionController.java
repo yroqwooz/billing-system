@@ -24,13 +24,12 @@ public class SubscriptionController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CreateSubscriptionResponse create(
-            @RequestBody CreateSubscriptionRequest request
+            @RequestBody @Valid CreateSubscriptionRequest request
     ) {
         SubscriptionId id = service.createSubscription(
                 new UserId(request.userId()),
                 new PlanId(request.planId())
         );
-
         return new CreateSubscriptionResponse(id.value());
     }
 
