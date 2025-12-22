@@ -35,7 +35,7 @@ public class SubscriptionExpirationService {
         LocalDate today = LocalDate.now(clock);
         log.info("Running subscription expiration check for date: {}", today);
 
-        List<Subscription> activeSubscriptions = findAllActiveSubscriptions();
+        List<Subscription> activeSubscriptions = repository.findAllByStatus(SubscriptionStatus.ACTIVE);
 
         int expiredCount = 0;
         for (Subscription subscription : activeSubscriptions) {
