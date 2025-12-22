@@ -1,9 +1,11 @@
 package com.example.subscription.infrastructure.persistence.springdata;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import com.example.subscription.infrastructure.persistence.entity.SubscriptionEntity;
+import com.example.subscription.infrastructure.persistence.entity.SubscriptionStatusJpa;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -14,4 +16,6 @@ public interface SpringDataSubscriptionRepository
         extends JpaRepository<SubscriptionEntity, UUID> {
 
     Optional<SubscriptionEntity> findByUserId(UUID userId);
+
+    List<SubscriptionEntity> findAllByStatus(SubscriptionStatusJpa status);
 }
