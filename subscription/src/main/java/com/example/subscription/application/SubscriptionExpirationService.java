@@ -48,9 +48,4 @@ public class SubscriptionExpirationService {
         }
         log.info("Expired {} subscriptions", expiredCount);
     }
-
-    private List<Subscription> findAllActiveSubscriptions() {
-        log.warn("findAllByStatus not implemented yet - expiration will not work");
-        return List.of();
-    }
 }

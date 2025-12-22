@@ -1,13 +1,23 @@
 package com.example.billing.infrastructure.repository;
 
-import com.example.billing.domain.plan.PlanId;
 import com.example.billing.domain.plan.Plan;
-import org.springframework.stereotype.Repository;
+import com.example.billing.domain.plan.PlanStatus;
+import com.example.common.PlanId;
 
-@Repository
-public class PlanRepository {
+import java.util.List;
+import java.util.Optional;
 
-    public Plan findById(PlanId id) {
-        return new Plan(null, null, null, null);
-    }
+public interface PlanRepository {
+
+    Optional<Plan> findById(PlanId id);
+
+    List<Plan> findAllByStatus(PlanStatus status);
+
+    List<Plan> findAllActive();
+
+    void save(Plan plan);
+
+    void delete(PlanId id);
+
+    boolean existsById(PlanId id);
 }

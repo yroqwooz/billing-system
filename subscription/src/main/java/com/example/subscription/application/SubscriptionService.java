@@ -12,6 +12,7 @@ import com.example.subscription.domain.model.SubscriptionPeriod;
 
 import com.example.subscription.infrastructure.SubscriptionRepository;
 
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,7 +56,12 @@ public class SubscriptionService {
 
         return subscription.getId();
     }
-
+    @Transactional
+    @Retryable(
+            value = OptimisticLockingFailureException.class,
+            maxAttempts = 3,
+            backoff = @Backoff(delay = 100)
+    )
     public void cancelSubscription(SubscriptionId id) {
         Subscription subscription = repository.findById(id)
                 .orElseThrow(SubscriptionNotFoundException::new);

@@ -9,7 +9,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @ComponentScan(basePackages = {
         "com.example.app",
-        "com.example.subscription"
+        "com.example.subscription",
+        "com.example.billing"
 })
 @EnableScheduling
 public class BillingSystemApplication {

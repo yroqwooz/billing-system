@@ -1,5 +1,7 @@
 package com.example.billing.domain.plan;
 
+import com.example.common.PlanId;
+
 import java.util.Objects;
 
 public class Plan {

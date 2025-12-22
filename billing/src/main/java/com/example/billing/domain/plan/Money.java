@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Money {
     private final BigDecimal amount;
     private final Currency currency;
+    private static final BigDecimal MAX_AMOUNT = new BigDecimal("999999999.99");
 
     public Money(BigDecimal amount, Currency currency) {
         this.amount = Objects.requireNonNull(amount, "Money value cannot be null");
@@ -15,6 +16,10 @@ public class Money {
 
         if (amount.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Amount of money cannot be negative");
+        }
+
+        if (amount.compareTo(MAX_AMOUNT) > 0) {
+            throw new IllegalArgumentException("Amount exceeds maximum allowed value");
         }
 
         if (amount.scale() > 2) {
@@ -89,5 +94,13 @@ public class Money {
     public boolean isEqualTo(Money other) {
         checkCurrencyMatch(other);
         return this.amount.compareTo(other.amount) == 0;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public Currency getCurrency() {
+        return currency;
     }
 }
