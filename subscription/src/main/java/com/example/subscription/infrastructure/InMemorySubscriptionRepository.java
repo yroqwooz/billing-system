@@ -3,12 +3,15 @@ package com.example.subscription.infrastructure;
 import com.example.subscription.domain.id.SubscriptionId;
 import com.example.common.UserId;
 import com.example.subscription.domain.model.Subscription;
+import com.example.subscription.domain.model.SubscriptionStatus;
 
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public class InMemorySubscriptionRepository
@@ -31,5 +34,12 @@ public class InMemorySubscriptionRepository
     @Override
     public void save(Subscription subscription) {
         storage.put(subscription.getId(), subscription);
+    }
+
+    @Override
+    public List<Subscription> findAllByStatus(SubscriptionStatus status) {
+        return storage.values().stream()
+                .filter(s -> s.getStatus() == status)
+                .collect(Collectors.toList());
     }
 }
