@@ -13,6 +13,8 @@ import com.example.subscription.domain.model.SubscriptionPeriod;
 import com.example.subscription.infrastructure.SubscriptionRepository;
 
 import org.springframework.dao.OptimisticLockingFailureException;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
