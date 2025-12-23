@@ -44,7 +44,7 @@ public class SubscriptionService {
                 .orElseThrow(PlanNotFoundException::new);
 
         LocalDate start = LocalDate.now(clock);
-        LocalDate end = start.plusDays(plan.durationDays());
+        LocalDate end = start.plus(plan.duration());  // ✅ Используем Period напрямую
 
         Subscription subscription = Subscription.create(
                 SubscriptionId.newId(),
@@ -58,6 +58,7 @@ public class SubscriptionService {
 
         return subscription.getId();
     }
+
     @Transactional
     @Retryable(
             value = OptimisticLockingFailureException.class,
