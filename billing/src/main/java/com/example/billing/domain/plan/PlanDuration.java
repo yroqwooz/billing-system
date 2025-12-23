@@ -23,6 +23,18 @@ public class PlanDuration {
         validate();
     }
 
+    public int getYears() {
+        return period.getYears();
+    }
+
+    public int getMonths() {
+        return period.getMonths();
+    }
+
+    public int getDays() {
+        return period.getDays();
+    }
+
     public LocalDate addTo(LocalDate startDate) {
         Objects.requireNonNull(startDate, "Start date must not be null");
         return startDate.plus(period);
