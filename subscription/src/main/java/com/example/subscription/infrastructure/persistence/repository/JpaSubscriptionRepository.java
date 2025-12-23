@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
-@Profile("test")
+@Profile("!test")
 @Repository
 @Primary
 public class JpaSubscriptionRepository implements SubscriptionRepository {
