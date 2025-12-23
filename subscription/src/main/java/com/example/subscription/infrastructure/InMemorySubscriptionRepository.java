@@ -5,6 +5,7 @@ import com.example.common.UserId;
 import com.example.subscription.domain.model.Subscription;
 import com.example.subscription.domain.model.SubscriptionStatus;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -14,6 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
+@Profile("test")
 public class InMemorySubscriptionRepository
         implements SubscriptionRepository {
 
