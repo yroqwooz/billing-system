@@ -19,6 +19,24 @@ public class Plan {
         this.status = PlanStatus.INACTIVE;
     }
 
+    private Plan(PlanId id, String name, PlanDuration duration, Money price, PlanStatus status) {
+        this.id = Objects.requireNonNull(id, "id must be not null");
+        this.name = Objects.requireNonNull(name, "Name must be not null");
+        this.duration = Objects.requireNonNull(duration, "duration must be not null");
+        this.price = Objects.requireNonNull(price, "price must be not null");
+        this.status = Objects.requireNonNull(status, "status must be not null");
+    }
+
+    public static Plan restore(
+            PlanId id,
+            String name,
+            PlanDuration duration,
+            Money price,
+            PlanStatus status
+    ) {
+        return new Plan(id, name, duration, price, status);
+    }
+
     public PlanId getId() {
         return id;
     }
