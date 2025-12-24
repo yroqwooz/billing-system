@@ -8,12 +8,14 @@ import com.example.subscription.domain.model.SubscriptionPeriod;
 import com.example.subscription.infrastructure.persistence.entity.SubscriptionEntity;
 import com.example.subscription.infrastructure.persistence.entity.SubscriptionMapper;
 import com.example.subscription.infrastructure.persistence.springdata.SpringDataSubscriptionRepository;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
 
@@ -28,8 +30,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-@EnableJpaRepositories(basePackages = "com.example.subscription.infrastructure.persistence.springdata")
-@EntityScan(basePackages = "com.example.subscription.infrastructure.persistence.entity")
+@ActiveProfiles("test")
+@DisplayName("Subscription Service Optimistic Locking Integration Tests")
 class SubscriptionServiceOptimisticLockingIT {
     @Autowired
     private SpringDataSubscriptionRepository springDataSubscriptionRepository;

@@ -61,16 +61,9 @@ public final class PlanMapper {
                 Currency.getInstance(entity.getPriceCurrency())
         );
 
-        Plan plan = new Plan(id, name, duration, price);
-
-        // Восстановить статус
         PlanStatus status = PlanStatus.valueOf(entity.getStatus().name());
-        switch (status) {
-            case ACTIVE -> plan.setActive();
-            case INACTIVE -> plan.setInactive();
-            case OBSOLETE -> plan.setObsolete();
-        }
 
-        return plan;
+        // ✅ Используем restore() для восстановления из БД
+        return Plan.restore(id, name, duration, price, status);
     }
 }
